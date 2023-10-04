@@ -20,5 +20,20 @@ If you already have created the container, then just run:
 ./docker_start.sh
 ```
 ## 3. Save .bag file in /root/bags
-## 4. Check aprilgrid.yaml and imu.yaml from /startup/config folder 
+Create `bags` folder in /home on your PC.
+Save `dataset.bag` in `bags` folder.
+
+## 4. Check aprilgrid.yaml and imu.yaml in /startup/config folder 
 ## 5. Start session in the docker container
+INTRINSICS PARAMETERS:
+
+Output file `dataset-camchain.yaml` is saved in `/root/bags` folder.
+Rename it to `intrinsics.yaml`:
+```sh
+mv dataset-camchain.yaml intrinsics.yaml
+```
+
+EXTRINSICS PARAMETERS:
+
+Output file `dataset-camimuchain.yaml` is saved in `/root/bags` folder.
+
