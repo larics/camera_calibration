@@ -27,10 +27,6 @@ RUN apt-get install openssh-client git
 # SSH and Github 
 RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-#Usb cam install
-RUN apt-get update && \
-	apt-get install -y
-
 RUN mkdir $HOME/calibration
 RUN mkdir $HOME/bags
 
@@ -44,10 +40,16 @@ WORKDIR $HOME/$WORKSPACE/src
 RUN git clone https://github.com/ethz-asl/kalibr.git
 RUN --mount=type=ssh git clone git@github.com:larics/camera_calibration.git
 
+# Install tmux and tmuxinator
+RUN curl https://raw.githubusercontent.com/larics/uav_ros_stack/main/installation/dependencies/tmux/dottmux.conf >>  $HOME/.tmux.conf
+RUN sudo apt-get -y install tmux tmuxinator
+RUN curl https://raw.githubusercontent.com/larics/uav_ros_stack/main/miscellaneous/shell_additions/shell_scripts.sh >> $HOME/.shell_scripts.sh
+
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> $HOME/.bashrc
 RUN echo "export KALIBR_MANUAL_FOCAL_LENGTH_INIT=1" >> $HOME/.bashrc 
 RUN catkin build --limit-status-rate 0.2 --jobs 8 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> $HOME/.bashrc
 RUN echo "source $HOME/$WORKSPACE/devel/setup.bash" >> $HOME/.bashrc
+RUN echo "source $HOME/.shell_scripts.sh" >> $HOME/.bashrc
 
 WORKDIR $HOME/$WORKSPACE/src/camera_calibration/startup

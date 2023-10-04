@@ -8,7 +8,7 @@ windows:
       panes:
         - roscore
   - calibration:
-    layout: tiled
-    panes:
-      - cd /root/calibration; history -s "rosrun kalibr kalibr_calibrate_cameras --target /root/catkin_ws/src/camera_calibration/startup/config/aprilgrid.yaml --bag /root/bags/dataset.bag --models pinhole-radtan pinhole-radtan --topics /$UAV_NAMESPACE/usb_cam/image_raw"
-      - cd /root/calibration; history -s "rosrun kalibr kalibr_calibrate_imu_camera --target /root/catkin_ws/src/camera_calibration/startup/config/aprilgrid.yaml --bag /root/bags/dataset.bag --cam intrinsics.yaml --imu /root/catkin_ws/src/camera_calibration/startup/config/imu.yaml"
+      layout: tiled
+      panes:
+        - cd /root/calibration; history -s "rosrun kalibr kalibr_calibrate_cameras --target /root/catkin_ws/src/camera_calibration/startup/config/aprilgrid.yaml --bag /root/bags/dataset.bag --models pinhole-radtan pinhole-radtan --topics /$UAV_NAMESPACE/usb_cam/image_raw"
+        - cd /root/calibration; history -s "rosrun kalibr kalibr_calibrate_imu_camera --target /root/catkin_ws/src/camera_calibration/startup/config/aprilgrid.yaml --bag /root/bags/dataset.bag --cam intrinsics.yaml --imu /root/catkin_ws/src/camera_calibration/startup/config/imu.yaml"
